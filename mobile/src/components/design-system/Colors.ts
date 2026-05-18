@@ -17,6 +17,8 @@ export const Colors = {
   warningLight: "rgba(255, 159, 10, 0.15)",
   danger: "#FF453A",
   dangerLight: "rgba(255, 69, 58, 0.15)",
+  gold: "#FFD60A",
+  goldLight: "rgba(255, 214, 10, 0.15)",
 
   // Islamic mode accent
   islamic: "#1E8F5E",

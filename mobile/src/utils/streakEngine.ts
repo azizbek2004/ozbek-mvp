@@ -24,7 +24,7 @@ export function calcStreak(
     current;
   let flexSaveUsed = false;
 
-  if (status !== "completed") {
+  if (status !== "completed" && status !== "shielded") {
     return {
       currentStreak,
       bestStreak,
@@ -71,6 +71,13 @@ export function calcStreak(
         lastCompletedDate,
         flexSaveUsed,
       };
+    }
+  }
+
+  if (status === "shielded") {
+    if (flexUsedThisMonth < 3) {
+      flexUsedThisMonth += 1;
+      flexSaveUsed = true;
     }
   }
 

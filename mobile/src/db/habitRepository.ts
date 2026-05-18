@@ -174,8 +174,29 @@ export async function applyLocalToggle(
     status: newStatus,
   });
 
-  // FIX: include the resolved status in the payload so useOfflineSync
-  // can push the correct value without re-reading local state.
+  await addToSyncQueue("toggleHabit", { habitId, logDate, status: newStatus });
+
+  return newStatus;
+}
+
+export async function applyLocalShield(
+  userId: string,
+  habitId: string,
+  logDate: string,
+  currentLog?: { status: string } | null,
+) {
+  const wasShielded = currentLog?.status === "shielded";
+  const newStatus = wasShielded ? "missed" : "shielded";
+  const logId = `${habitId}_${logDate}`;
+
+  await upsertLog({
+    id: logId,
+    habitId,
+    userId,
+    logDate,
+    status: newStatus,
+  });
+
   await addToSyncQueue("toggleHabit", { habitId, logDate, status: newStatus });
 
   return newStatus;

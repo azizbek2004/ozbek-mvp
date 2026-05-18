@@ -63,16 +63,20 @@ export default function TabLayout() {
         name="fab"
         options={{
           title: "",
-          tabBarButton: (props) => (
-            <TouchableOpacity
-              {...props}
-              style={[styles.fab, props.style]}
-              accessibilityRole="button"
-              accessibilityLabel={t("newHabit")}
-            >
-              <Text style={styles.fabIcon}>+</Text>
-            </TouchableOpacity>
-          ),
+          tabBarButton: (props) => {
+            const { delayLongPress, ...rest } = props as any;
+            return (
+              <TouchableOpacity
+                {...rest}
+                delayLongPress={delayLongPress ?? undefined}
+                style={[styles.fab, props.style]}
+                accessibilityRole="button"
+                accessibilityLabel={t("newHabit")}
+              >
+                <Text style={styles.fabIcon}>+</Text>
+              </TouchableOpacity>
+            );
+          },
         }}
         listeners={{
           tabPress: (e) => {

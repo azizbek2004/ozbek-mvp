@@ -34,7 +34,7 @@ export function useOfflineSync() {
           const payload = JSON.parse(item.payload) as {
             habitId: string;
             logDate: string;
-            status: "completed" | "missed";
+            status: "completed" | "missed" | "shielded";
             value?: number;
             increment?: number;
             // For createHabit / updateHabit

@@ -56,7 +56,7 @@ export interface FireHabitLog {
   habitId: string;
   userId: string;
   logDate: string;
-  status: "completed" | "missed";
+  status: "completed" | "missed" | "shielded";
   value?: number;
   createdAt: string;
 }
@@ -291,7 +291,7 @@ export async function upsertLog(data: {
   habitId: string;
   userId: string;
   logDate: string;
-  status: "completed" | "missed";
+  status: "completed" | "missed" | "shielded";
   value?: number;
 }): Promise<void> {
   const db = getDb();

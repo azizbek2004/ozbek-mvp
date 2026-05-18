@@ -11,6 +11,7 @@ import {
 } from "../services/firestoreService";
 import {
   applyLocalToggle,
+  applyLocalShield,
   applyLocalIncrement,
   getHabitsForDateLocal,
   saveHabitsFromServer,
@@ -242,10 +243,39 @@ export function useHabitsForDate(date: string) {
     [habits, userId, date, loadLocal, isOnline, user?.uid],
   );
 
+  const shieldHabit = useCallback(
+    async (habitId: string) => {
+      if (!userId) return;
+      const habit = habits.find((h) => h._id === habitId);
+      const isShielded = habit?.log?.status === "shielded";
+      const newStatus = isShielded ? "missed" : "shielded";
+
+      await applyLocalShield(userId, habitId, date, habit?.log ?? null);
+
+      if (isOnline && user?.uid) {
+        try {
+          await upsertLogRemote({
+            habitId,
+            userId: user.uid,
+            logDate: date,
+            status: newStatus as any,
+          });
+        } catch (e) {
+          console.error("[useHabitsForDate] shield sync error:", e);
+        }
+      }
+
+      await loadLocal();
+      setRemoteHabits(null);
+    },
+    [habits, userId, date, loadLocal, isOnline, user?.uid],
+  );
+
   return {
     habits,
     isLoading,
     toggleHabit,
+    shieldHabit,
     incrementHabit,
     refresh: loadLocal,
     remoteError,

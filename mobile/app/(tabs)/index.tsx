@@ -54,6 +54,7 @@ export default function HomeScreen() {
     habits,
     isLoading,
     toggleHabit,
+    shieldHabit,
     incrementHabit,
     refresh,
     remoteError,
@@ -93,6 +94,15 @@ export default function HomeScreen() {
       notificationSuccess();
     },
     [toggleHabit],
+  );
+
+  const handleShield = useCallback(
+    async (habitId: string) => {
+      impactLight();
+      await shieldHabit(habitId);
+      notificationSuccess();
+    },
+    [shieldHabit],
   );
 
   const handleIncrement = useCallback(
@@ -291,6 +301,7 @@ export default function HomeScreen() {
                             : undefined
                       }
                       onPress={() => void handleToggle(habit._id)}
+                      onShield={() => void handleShield(habit._id)}
                       onLongPress={() => handleLongPress(habit)}
                       onIncrement={
                         habit.targetType === "count"
