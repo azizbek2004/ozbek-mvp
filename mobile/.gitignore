@@ -1,0 +1,28 @@
+# @generated expo-cli
+expo-env.d.ts
+# @end expo-cli
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+dist-export-check/
+
+# Native
+android/.gradle/
+android/app/build/
+android/build/
+ios/build/
+ios/Pods/
+ios/**/*.xcuserstate
+
+# Secrets
+google-services.json
+GoogleService-Info.plist

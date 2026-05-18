@@ -1,0 +1,13 @@
+{
+  "name": "ozbek-mvp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "mobile": "npm run start --prefix mobile",
+    "mobile:ios": "npm run ios --prefix mobile",
+    "mobile:android": "npm run android --prefix mobile",
+    "typecheck": "npm run typecheck --prefix mobile",
+    "lint": "npm run lint --prefix mobile",
+    "build:check": "npm run build:check --prefix mobile"
+  }
+}
