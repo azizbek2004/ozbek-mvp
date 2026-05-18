@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -74,13 +74,15 @@ export default function EditHabitModal() {
 
   const handleSave = async () => {
     const effectiveUserId = user?.uid || userId;
-    if (!name.trim() || isSubmitting || !effectiveUserId || !params.habitId) return;
+    if (!name.trim() || isSubmitting || !effectiveUserId || !params.habitId)
+      return;
     setIsSubmitting(true);
 
     try {
-      const updatedValue = targetType !== "binary"
-        ? Math.max(1, parseInt(targetValue, 10) || 1)
-        : undefined;
+      const updatedValue =
+        targetType !== "binary"
+          ? Math.max(1, parseInt(targetValue, 10) || 1)
+          : undefined;
 
       // Update locally first and enqueue
       await updateLocalHabit(effectiveUserId, params.habitId, {
@@ -107,7 +109,10 @@ export default function EditHabitModal() {
           frequencyType: frequency,
           timeOfDay,
         }).catch((err) => {
-          console.warn("[offline-first] remote update delayed, queued in SQLite:", err);
+          console.warn(
+            "[offline-first] remote update delayed, queued in SQLite:",
+            err,
+          );
         });
       }
     } catch (error) {
@@ -131,14 +136,17 @@ export default function EditHabitModal() {
           try {
             // Delete locally first and enqueue delete operation
             await deleteLocalHabit(effectiveUserId, params.habitId);
-            
+
             triggerRefetch();
             router.back();
 
             // Trigger remote delete in the background
             if (user?.uid) {
               deleteHabitRemote(params.habitId).catch((err) => {
-                console.warn("[offline-first] remote delete delayed, queued in SQLite:", err);
+                console.warn(
+                  "[offline-first] remote delete delayed, queued in SQLite:",
+                  err,
+                );
               });
             }
           } catch (error) {

@@ -249,7 +249,7 @@ export async function createLocalHabit(
     frequencyType: string;
     timeOfDay: string;
     reminderEnabled: boolean;
-  }
+  },
 ) {
   await insertHabit({
     id: habit.id,
@@ -293,12 +293,12 @@ export async function updateLocalHabit(
     targetValue?: number;
     frequencyType: string;
     timeOfDay: string;
-  }
+  },
 ) {
   const db = await getDB();
   const existing = await db.getFirstAsync<Record<string, unknown>>(
     "SELECT * FROM habits WHERE id = ?",
-    [habitId]
+    [habitId],
   );
 
   await insertHabit({

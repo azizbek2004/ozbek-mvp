@@ -5,7 +5,13 @@ import { useAuthStore } from "../stores/authStore";
 // FIX: import removeSyncQueueItem so we can clear each entry after a
 // successful push instead of letting the queue grow forever.
 import { getSyncQueue, removeSyncQueueItem } from "../db/habitRepository";
-import { getHabitsForDate, upsertLog, createHabit, updateHabit, deleteHabit } from "../services/firestoreService";
+import {
+  getHabitsForDate,
+  upsertLog,
+  createHabit,
+  updateHabit,
+  deleteHabit,
+} from "../services/firestoreService";
 import { getToday } from "../utils/date";
 
 export function useOfflineSync() {

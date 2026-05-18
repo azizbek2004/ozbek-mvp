@@ -105,7 +105,10 @@ export default function AddHabitModal() {
           isArchived: false,
           reminderEnabled: habitData.reminderEnabled,
         }).catch((err) => {
-          console.warn("[offline-first] remote create delayed, queued in SQLite:", err);
+          console.warn(
+            "[offline-first] remote create delayed, queued in SQLite:",
+            err,
+          );
         });
       }
     } catch (error) {

@@ -130,7 +130,7 @@ export function useHabitsForDate(date: string) {
       console.error("[useHabitsForDate] remote fetch error:", e);
       if (mountedRef.current) setRemoteError("Failed to fetch remote habits");
     }
-  }, [isAuthenticated, user?.uid, userId, isOnline, date]);
+  }, [isAuthenticated, user?.uid, userId, isOnline, date, loadLocal]);
 
   useEffect(() => {
     setRemoteHabits(null);

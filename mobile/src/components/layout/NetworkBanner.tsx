@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Animated,
-} from "react-native";
+import { Text, StyleSheet, ActivityIndicator, Animated } from "react-native";
 import { Colors } from "../design-system/Colors";
 import { Typography } from "../design-system/Typography";
 import { Spacing } from "../design-system/Spacing";

@@ -12,7 +12,7 @@ import {
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { addWeeks, subWeeks, format } from "date-fns";
+import { addWeeks, subWeeks } from "date-fns";
 import { Colors } from "../../src/components/design-system/Colors";
 import { Typography } from "../../src/components/design-system/Typography";
 import { Spacing } from "../../src/components/design-system/Spacing";

@@ -9,7 +9,6 @@ import {
   query,
   where,
   orderBy,
-  addDoc,
   writeBatch, // FIX: needed for atomic batch habit creation
   type Firestore,
   type DocumentReference,

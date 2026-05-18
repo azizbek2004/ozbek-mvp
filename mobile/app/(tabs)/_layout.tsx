@@ -1,13 +1,6 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Platform,
-} from "react-native";
-import { ICON_MAP } from "../../src/utils/constants";
+import { TouchableOpacity, Text, StyleSheet, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Colors } from "../../src/components/design-system/Colors";

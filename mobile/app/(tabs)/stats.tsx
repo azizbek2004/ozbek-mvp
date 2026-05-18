@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
   View,
   Text,
@@ -70,7 +70,10 @@ export default function StatsScreen() {
   const stats = segment === 0 ? weeklyData : monthlyData;
   const dailyRates = segment === 0 ? (weeklyData?.dailyRates ?? []) : [];
   const weeklyRates = segment === 1 ? (monthlyData?.weeklyRates ?? []) : [];
-  const habitBreakdown = stats?.habitBreakdown ?? [];
+  const habitBreakdown = useMemo<WeeklyStats["habitBreakdown"]>(
+    () => stats?.habitBreakdown ?? [],
+    [stats],
+  );
   const tartibScore = stats?.tartibScore ?? 0;
   const chartData = segment === 0 ? dailyRates : weeklyRates;
   const maxRate = Math.max(...chartData.map((d) => d.rate), 1);
@@ -187,7 +190,7 @@ export default function StatsScreen() {
           {habitBreakdown.length === 0 ? (
             <Text style={styles.emptyText}>{t("noHabitsToday")}</Text>
           ) : (
-            habitBreakdown.map((habit) => (
+            habitBreakdown.map((habit: any) => (
               <View key={habit.habitId} style={styles.habitRow}>
                 <Text style={styles.habitIcon}>
                   {ICON_MAP[habit.icon] || "⭐"}
